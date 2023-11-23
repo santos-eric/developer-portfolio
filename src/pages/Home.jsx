@@ -4,9 +4,6 @@ import Loader from '../components/Loader'
 
 import Skull from '../models/Skull'
 
-{/* <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
-        PopUp
-      </div> */}
 
 const Home = () => {
 
@@ -20,7 +17,7 @@ const Home = () => {
       // [x,y,z] scale
       screenScale = [15, 15, 15]
     } else {
-      screenScale = [25, 25, 25]
+      screenScale = [20, 20, 20]
     }
     return [screenScale, screenPosition, rotation]
   }
