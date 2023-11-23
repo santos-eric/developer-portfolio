@@ -9,26 +9,23 @@ Title: Skull Salazar (Downloadable)
 
 import { useRef,useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useFrame, useThree } from '@react-three/fiber'
-import { a } from '@react-spring/three'
+import { useFrame } from '@react-three/fiber'
 
 import skullScene from '../assets/3d/skull.glb'
 
-const Skull = (props) => {
+const Skull = ({ ...props }) => {
+    const skull = useGLTF(skullScene)
     const skullRef = useRef()
 
-    const { nodes, materials } = useGLTF(skullScene);
+    useFrame((_, delta) => {
+        skullRef.current.rotation.y += 0.45 * delta
+    })
+
     return (
-        <a.group ref={skullRef}{...props}>
-            <mesh
-            geometry={nodes.defaultMaterial.geometry}
-            material={materials.Rosa_material}
-            />
-            <mesh
-            geometry={nodes.defaultMaterial_1.geometry}
-            material={materials.defaultMat_material}
-            />
-        </a.group>
+        <mesh
+        ref={skullRef} {...props}>
+            <primitive object={skull.scene} />
+        </mesh>
     )
 }
 
